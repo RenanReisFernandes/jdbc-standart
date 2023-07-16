@@ -28,7 +28,7 @@ public class Program {
 			e.printStackTrace();
 		}
 		finally {
-			DB.closeResultSet(rs);
+			DB.closeConnection();
 			DB.closeStatement(st);
 			DB.closeConnection();
 		}
