@@ -37,6 +37,11 @@ public class Program {
 			// TODO: handle exception
 			throw new DbException(e.getMessage());
 		}
+		finally {
+			DB.closeStatement(st);
+			DB.closeConnection();
+			
+		}
 	
 	}
 
