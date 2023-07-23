@@ -24,14 +24,24 @@ public class Program {
 					"INSERT INTO seller"
 					+"(Name, Email,aniversario)"
 					+"VALUES"
-					+"(?,?,?)"
+					+"(?,?,?)",
+					Statement.NO_GENERATED_KEYS
 					);
 			st.setString(1, "Renan");
 			st.setString(2, "renan@email.com");
 			st.setDate(3, new java.sql.Date(stdf.parse("02/07/1997").getTime()));
 			
 			int rowsAffected = st.executeUpdate();
-			System.out.println("Done! rows affected " + rowsAffected );
+			
+			if (rowsAffected > 0) {
+			ResultSet rs =	st.getGeneratedKeys();
+			while (rs.next()) {
+				int id = rs.getInt(1);
+				System.out.println("Done id = "+id);
+			}
+			}else {
+				System.out.println("No line affected!");
+			}
 			
 		} catch (SQLException e) {
 			// TODO: handle exception
